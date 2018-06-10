@@ -33,7 +33,7 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://127.0.0.1:3306/springcloud8001
     username: root
-    password: 123456
+    password: '{cipher}9a16a463ca773e4153c6c5ca21f7ba6efe701b6ff6b3de5306137408f9a2c7'
     filters: stat,wall,log4j
     dbcp2:
       min-idle: 5
