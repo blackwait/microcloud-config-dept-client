@@ -1,0 +1,97 @@
+spring:
+  profiles:
+    active:
+    - dev
+---
+
+
+server:
+  port: 8001
+eureka:
+  instance:
+      hostname: dept-8001.com
+  client:
+    serviceUrl:
+      defaultZone: 
+        http://myadmin:123456@eureka-7001.com:7001/eureka
+
+security:
+  basic: 
+    enabled: true
+  user:
+    name: myadmin
+    password: 123456
+
+mybatis:
+  mapper-locations: classpath:mybatis/mapper/**/*.xml
+  type-aliases-package: com.yzb.vo
+  config-location: classpath:mybatis/mybatis.cfg.xml
+spring:
+  profiles: dev
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/springcloud8001
+    username: root
+    password: 123456
+    filters: stat,wall,log4j
+    dbcp2:
+      min-idle: 5
+      initial-size: 5
+      max-total: 5
+      max-wait-millis: 200
+  application:
+    name: microcloud-config-dept-client
+info:
+  app.name: microcloud
+  company.name: www.yzb.cn
+  build.artifactId: $project.artifactId$
+  build.version: $project.version$
+  
+  
+---
+ 
+server:
+  port: 8002
+eureka:
+  instance:
+      hostname: dept-8001.com
+  client:
+    serviceUrl:
+      defaultZone: 
+        http://myadmin:123456@eureka-7001.com:7001/eureka
+  
+  
+security:
+  basic: 
+    enabled: true #启用springSecurity的安全配置
+  user:
+    name: myadmin
+    password: 123456
+
+mybatis:
+  mapper-locations: classpath:mybatis/mapper/**/*.xml
+  type-aliases-package: com.yzb.vo
+  config-location: classpath:mybatis/mybatis.cfg.xml
+spring:
+  profiles: test
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/springcloud8001
+    username: root
+    password: 123456
+    filters: stat,wall,log4j
+    dbcp2:
+      min-idle: 5
+      initial-size: 5
+      max-total: 5
+      max-wait-millis: 200
+  application:
+    name: microcloud-config-dept-client
+info:
+  app.name: microcloud
+  company.name: www.yzb.cn
+  build.artifactId: $project.artifactId$
+  build.version: $project.version$
+  
